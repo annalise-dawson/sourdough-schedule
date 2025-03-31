@@ -1,13 +1,12 @@
-import { useSteps } from '../hooks/useSteps.ts'
+import { Outlet } from 'react-router-dom'
+import Nav from './Nav.tsx'
 
 function App() {
-  const { data } = useSteps()
-
   return (
     <>
       <div className="app">
-        <h1>Fullstack Boilerplate - with Fruits!</h1>
-        <ul>{data && data.map((fruit) => <li key={fruit}>{fruit}</li>)}</ul>
+        <Nav />
+        <Outlet />
       </div>
     </>
   )
