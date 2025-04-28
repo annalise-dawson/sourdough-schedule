@@ -30,7 +30,7 @@ const times = [
 ]
 
 function add(num1: number, num2: number) {
-  return num1 + num2
+  return Number(num1) + Number(num2)
 }
 
 export default function Bread() {
@@ -41,14 +41,22 @@ export default function Bread() {
   if (error) return <p>Bread is burning, be right back!</p>
 
   function handleTime(e: React.ChangeEvent<HTMLSelectElement>) {
-    setSelect(e.target.value)
+    setSelect(Number(e.target.value))
   }
 
   function convertTo12Hour(twentyfourhourtime: number) {
     const amOrPm =
-      twentyfourhourtime === 24 ? 'am' : twentyfourhourtime >= 12 ? 'pm' : 'am'
-    const hour = twentyfourhourtime % 12 === 0 ? 12 : twentyfourhourtime % 12
-    return `${hour}${amOrPm}`
+      twentyfourhourtime < 12 || twentyfourhourtime === 24 ? 'am' : 'pm'
+
+    const hour = Math.floor(
+      twentyfourhourtime % 12 === 0 ? 12 : twentyfourhourtime % 12,
+    )
+
+    const minute = Math.round((twentyfourhourtime % 1) * 60)
+
+    const formattedMinute = minute < 10 ? `0${minute}` : minute
+
+    return `${hour}:${formattedMinute}${amOrPm}`
   }
 
   return (
@@ -78,7 +86,9 @@ export default function Bread() {
         {steps.map((step: Steps) => (
           <div key={step.id} className="step">
             <p className="step-time">
-              <strong>{add(Number(select), step.setTime)}am</strong>
+              <strong>
+                {convertTo12Hour(add(Number(select), Number(step.setTime)))}
+              </strong>
             </p>
             <p className="step-instruction">{step.instructions}</p>
           </div>
@@ -87,3 +97,8 @@ export default function Bread() {
     </div>
   )
 }
+
+//need to change it so it says 2.30pm instead of 2.5pm
+//Could I just change database?
+//2.5 + 9 = 11.5
+//2.30 + 9 = 11.30
