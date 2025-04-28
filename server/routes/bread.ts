@@ -1,12 +1,12 @@
 import { Router } from 'express'
 
-import * as db from '../db/steps.ts'
+import * as db from '../db/bread.ts'
 
 const router = Router()
 
 router.get('/', async (req, res) => {
   try {
-    const steps = await db.getAllSteps()
+    const steps = await db.getAllBreadSteps()
 
     res.json(steps)
   } catch (error) {
