@@ -46,11 +46,10 @@ export default function Bread() {
 
   function convertTo12Hour(twentyfourhourtime: number) {
     const amOrPm =
-      twentyfourhourtime < 12 || twentyfourhourtime === 24 ? 'am' : 'pm'
+      twentyfourhourtime >= 12 && twentyfourhourtime < 24 ? 'pm' : 'am'
 
-    const hour = Math.floor(
-      twentyfourhourtime % 12 === 0 ? 12 : twentyfourhourtime % 12,
-    )
+    let hour = Math.floor(twentyfourhourtime)
+    hour = hour % 12 === 0 ? 12 : hour % 12
 
     const minute = Math.round((twentyfourhourtime % 1) * 60)
 
@@ -98,7 +97,4 @@ export default function Bread() {
   )
 }
 
-//need to change it so it says 2.30pm instead of 2.5pm
-//Could I just change database?
-//2.5 + 9 = 11.5
-//2.30 + 9 = 11.30
+//Need to add a next day
