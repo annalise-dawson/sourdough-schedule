@@ -3,33 +3,59 @@ import { Steps } from '../../models/steps'
 import { useState } from 'react'
 
 const times = [
-  { time: 1000 },
-  { time: 1100 },
-  { time: 1200 },
-  { time: 1300 },
-  { time: 1400 },
-  { time: 1500 },
-  { time: 1600 },
-  { time: 1700 },
-  { time: 1800 },
-  { time: 1900 },
-  { time: 2000 },
-  { time: 2100 },
+  { time: 1 },
+  { time: 2 },
+  { time: 3 },
+  { time: 4 },
+  { time: 5 },
+  { time: 6 },
+  { time: 7 },
+  { time: 8 },
+  { time: 9 },
+  { time: 10 },
+  { time: 11 },
+  { time: 12 },
+  { time: 13 },
+  { time: 14 },
+  { time: 15 },
+  { time: 16 },
+  { time: 17 },
+  { time: 18 },
+  { time: 19 },
+  { time: 20 },
+  { time: 21 },
+  { time: 22 },
+  { time: 23 },
+  { time: 24 },
 ]
 
 function add(num1: number, num2: number) {
-  return num1 + num2
+  return Number(num1) + Number(num2)
 }
 
 export default function Bread() {
   const { data: steps, isLoading, error } = useSteps()
-  const [select, setSelect] = useState('0900')
+  const [select, setSelect] = useState(9)
 
   if (isLoading) return <p>Preheating the oven...</p>
   if (error) return <p>Bread is burning, be right back!</p>
 
   function handleTime(e: React.ChangeEvent<HTMLSelectElement>) {
-    setSelect(e.target.value)
+    setSelect(Number(e.target.value))
+  }
+
+  function convertTo12Hour(twentyfourhourtime: number) {
+    const amOrPm =
+      twentyfourhourtime >= 12 && twentyfourhourtime < 24 ? 'pm' : 'am'
+
+    let hour = Math.floor(twentyfourhourtime)
+    hour = hour % 12 === 0 ? 12 : hour % 12
+
+    const minute = Math.round((twentyfourhourtime % 1) * 60)
+
+    const formattedMinute = minute < 10 ? `0${minute}` : minute
+
+    return `${hour}:${formattedMinute}${amOrPm}`
   }
 
   return (
@@ -45,12 +71,12 @@ export default function Bread() {
           onChange={handleTime}
           className="drop-down"
         >
-          <option value="0900" key="default">
-            0900
+          <option value="select time" key="default">
+            select time
           </option>
           {times.map((time) => (
             <option key={time.time} value={time.time}>
-              {time.time}
+              {convertTo12Hour(Number(time.time))}
             </option>
           ))}
         </select>
@@ -59,7 +85,9 @@ export default function Bread() {
         {steps.map((step: Steps) => (
           <div key={step.id} className="step">
             <p className="step-time">
-              <strong>{add(Number(select), step.setTime)}</strong>
+              <strong>
+                {convertTo12Hour(add(Number(select), Number(step.setTime)))}
+              </strong>
             </p>
             <p className="step-instruction">{step.instructions}</p>
           </div>
@@ -68,3 +96,5 @@ export default function Bread() {
     </div>
   )
 }
+
+//Need to add a next day
