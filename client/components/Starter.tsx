@@ -1,4 +1,5 @@
 import { useStarterSteps } from '../hooks/useStarterSteps'
+import { StarterSteps } from '../../models/starter'
 
 export default function Starter() {
   const { data: steps, isLoading, error } = useStarterSteps()
@@ -10,7 +11,7 @@ export default function Starter() {
     <div className="bread-container">
       <h2 className="bread-schedule-title">Starter Schedule</h2>
       <div className="steps">
-        {steps.map((step) => (
+        {steps.map((step: StarterSteps) => (
           <div key={step.id} className="step">
             <p className="step-time">
               <strong>Day {step.day}</strong>
