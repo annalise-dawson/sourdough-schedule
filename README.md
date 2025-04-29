@@ -6,7 +6,7 @@ A simple tool to help bakers schedule each step of their sourdough baking proces
 
 ```bash
 # Clone the repository
-git clone https://github.com/annalise-dawson/sourdough-schedule
+git clone https://github.com/annalise-dawson/sourdough-schedule.git
 
 # Go into the project directory
 cd sourdough-schedule
