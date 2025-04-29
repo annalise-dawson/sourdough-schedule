@@ -1,13 +1,15 @@
 import express from 'express'
 import * as Path from 'node:path'
 
-import stepRoutes from './routes/steps.ts'
+import stepRoutes from './routes/bread.ts'
+import starterRoutes from './routes/starter.ts'
 
 const server = express()
 
 server.use(express.json())
 
 server.use('/api/v1/steps', stepRoutes)
+server.use('/api/v1/starter', starterRoutes)
 
 if (process.env.NODE_ENV === 'production') {
   server.use(express.static(Path.resolve('public')))

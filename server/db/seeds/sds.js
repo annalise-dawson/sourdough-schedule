@@ -17,8 +17,12 @@ export const seed = async function (knex) {
       instructions: 'Shape dough and place in proofing basket',
       set_time: 5,
     },
-    { id: 9, instructions: 'Put in fridge', set_time: 5.5 },
-    { id: 10, instructions: 'Pre-heat oven and dutch oven', set_time: 0 },
+    { id: 9, instructions: 'Put in fridge and leave overnight', set_time: 5.5 },
+    {
+      id: 10,
+      instructions: 'NEXT DAY Pre-heat oven and dutch oven',
+      set_time: 0,
+    },
     {
       id: 11,
       instructions: 'Score dough and place in oven with lid on',
