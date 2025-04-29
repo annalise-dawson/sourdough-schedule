@@ -1,4 +1,4 @@
-# Sourdough Scheduler
+# 🍞 Sourdough Scheduler
 
 A simple tool to help bakers schedule each step of their sourdough baking process. Select a start time, and the app calculates when each step (like stretch & folds, bulk ferment, shaping, and baking) should happen.
 
