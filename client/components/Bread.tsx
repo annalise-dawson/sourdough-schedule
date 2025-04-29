@@ -59,17 +59,19 @@ export default function Bread() {
   }
 
   return (
-    <div className="bread-container">
-      <h2 className="bread-schedule-title">Bread Schedule</h2>
-      <div className="pick-time">
-        <h3 className="time-picker-title">Pick a start-time</h3>
+    <div className="container">
+      <h2 className="section-title">Bread Schedule</h2>
+
+      <div className="picker">
+        <h3 className="picker-title">Pick a start-time</h3>
       </div>
-      <div className="start-selector">
+
+      <div className="picker-select">
         <select
           id="start-time"
           name="start-time"
           onChange={handleTime}
-          className="drop-down"
+          className="dropdown"
         >
           <option value="select time" key="default">
             select time
@@ -81,15 +83,16 @@ export default function Bread() {
           ))}
         </select>
       </div>
-      <div className="steps">
+
+      <div className="card-list">
         {steps.map((step: Steps) => (
-          <div key={step.id} className="step">
-            <p className="step-time">
+          <div key={step.id} className="card">
+            <p className="card-heading">
               <strong>
                 {convertTo12Hour(add(Number(select), Number(step.setTime)))}
               </strong>
             </p>
-            <p className="step-instruction">{step.instructions}</p>
+            <p className="card-text">{step.instructions}</p>
           </div>
         ))}
       </div>

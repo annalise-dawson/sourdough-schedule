@@ -20,6 +20,9 @@ function Nav() {
           <div className="starter-nav">
             <Link to="/starter">Starter</Link>
           </div>
+          <div className="recipe-nav">
+            <Link to="/recipe">Recipe</Link>
+          </div>
         </div>
       </header>
     </>

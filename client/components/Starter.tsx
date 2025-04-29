@@ -8,15 +8,15 @@ export default function Starter() {
   if (error) return <p>Bread is burning, be right back!</p>
 
   return (
-    <div className="bread-container">
-      <h2 className="bread-schedule-title">Starter Schedule</h2>
-      <div className="steps">
+    <div className="container">
+      <h2 className="section-title">Starter Schedule</h2>
+      <div className="card-list">
         {steps.map((step: StarterSteps) => (
-          <div key={step.id} className="step">
-            <p className="step-time">
+          <div key={step.id} className="card">
+            <p className="card-heading">
               <strong>Day {step.day}</strong>
             </p>
-            <p className="step-instruction">{step.instructions}</p>
+            <p className="card-text">{step.instructions}</p>
           </div>
         ))}
       </div>

@@ -5,6 +5,10 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+p {
+  font-size: 1.5rem;
+}
+
 header {
   display: flex;
   justify-content: flex-start;  
@@ -125,38 +129,37 @@ header {
   color: #482E1D;
 }
 
-.bread-container {
+.container {
   padding: 20px;
 }
 
-.bread-schedule-title {
+.section-title {
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #482E1D;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
-.time-picker-title {
-  text-align: center;
-  font-size: 1.5rem;
-  color: #482E1D;
+.picker {
+  display: flex;
+  justify-content: center;
   margin-bottom: 10px;
 }
 
-.pick-time {
+.picker-title {
+  font-size: 1.5rem;
+  color: #482E1D;
+  margin: 0;
+}
+
+.picker-select {
   display: flex;
   justify-content: center;
   margin-bottom: 20px;
 }
 
-.start-selector {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-
-.drop-down {
+.dropdown {
   padding: 10px;
   font-size: 1rem;
   border-radius: 5px;
@@ -166,13 +169,13 @@ header {
   color: #333;
 }
 
-.steps {
+.card-list {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.step {
+.card {
   background-color: #A3966A;
   padding: 15px;
   margin: 10px 0;
@@ -180,15 +183,37 @@ header {
   border-radius: 8px;
 }
 
-.step-time {
+.card-heading {
   font-weight: bold;
   color: #f0DAAE;
-  font-size: 1.2rem;
+  font-size: 2rem;
   margin-bottom: 10px;
 }
 
-.step-instruction {
+.card-text {
   color: #482E1D;
-  font-size: 1rem;
+  font-size: 1.5rem;
   margin-top: 5px;
+}
+
+.subheading {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #482E1D;
+  margin: 20px 0 10px;
+}
+
+.list {
+  margin-left: 20px;
+  padding-left: 20px;
+  font-size: 1.5rem;
+  list-style-type: disc;
+  color: #482E1D;
+}
+
+.section {
+  background-color: #fdf8ef;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
 }
