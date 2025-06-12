@@ -101,3 +101,4 @@ export default function Bread() {
 }
 
 //Need to add a next day
+//Add option to expand for more detailed steps
