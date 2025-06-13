@@ -36,6 +36,7 @@ function add(num1: number, num2: number) {
 export default function Bread() {
   const { data: steps, isLoading, error } = useSteps()
   const [select, setSelect] = useState(9)
+  const [openSteps, setOpenSteps] = useState<{ [key: number]: boolean }>({})
 
   if (isLoading) return <p>Preheating the oven...</p>
   if (error) return <p>Bread is burning, be right back!</p>
@@ -58,20 +59,27 @@ export default function Bread() {
     return `${hour}:${formattedMinute}${amOrPm}`
   }
 
-  return (
-    <div className="container">
-      <h2 className="section-title">Bread Schedule</h2>
+  function toggleStep(id: number) {
+    setOpenSteps((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }))
+  }
 
-      <div className="picker">
-        <h3 className="picker-title">Pick a start-time</h3>
+  return (
+    <div className="bread-page">
+      <h2 className="bread-page-title">Bread Schedule</h2>
+
+      <div className="bread-picker">
+        <h3 className="bread-picker-title">Pick a start-time</h3>
       </div>
 
-      <div className="picker-select">
+      <div className="bread-picker-select-wrapper">
         <select
           id="start-time"
           name="start-time"
           onChange={handleTime}
-          className="dropdown"
+          className="bread-picker-select"
         >
           <option value="select time" key="default">
             select time
@@ -84,15 +92,30 @@ export default function Bread() {
         </select>
       </div>
 
-      <div className="card-list">
+      <div className="bread-steps">
         {steps.map((step: Steps) => (
-          <div key={step.id} className="card">
-            <p className="card-heading">
+          <div key={step.id} className="bread-step">
+            <p className="bread-step-time">
               <strong>
                 {convertTo12Hour(add(Number(select), Number(step.setTime)))}
               </strong>
             </p>
-            <p className="card-text">{step.instructions}</p>
+            <p className="bread-step-instruction">{step.instructions}</p>
+
+            <div className="bread-step-footer">
+              <button
+                className="bread-step-expand-button"
+                onClick={() => toggleStep(step.id)}
+              >
+                {openSteps[step.id] ? 'Hide Details' : 'Show More'}
+              </button>
+            </div>
+
+            {openSteps[step.id] && step.expandedInstructions && (
+              <div className="bread-step-details">
+                <p>{step.expandedInstructions}</p>
+              </div>
+            )}
           </div>
         ))}
       </div>
@@ -102,3 +125,4 @@ export default function Bread() {
 
 //Need to add a next day
 //Add option to expand for more detailed steps
+//Add tick box option
