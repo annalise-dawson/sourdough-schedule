@@ -10,6 +10,42 @@ function Home() {
       </div>
       <div className="home-section">
         <div className="home-subheading">
+          <h2>HOW THE SOURDOUGH SCHEDULER CAN HELP</h2>
+          <p className="home-intro">
+            <p className="home-intro-box">
+              <strong>SCHEDULING YOUR SOURDOUGH</strong>
+              <br />A simple tool where you can select what time you&apos;ll
+              start making your bread and it will show you at what time you
+              should start each step.
+            </p>
+            <img
+              src="/schedulerpage.png"
+              alt="example of schedule page with step 1 instructions"
+            />
+
+            <p className="home-intro-box">
+              <strong>SCHEDULING YOUR STARTER</strong>
+              <br />
+              Much like the sourdough scheduler! Except this is broken down day
+              by day.
+            </p>
+            <img
+              src="/starterpage.png"
+              alt="example of starter page with step 1 instructions"
+            />
+
+            <p className="home-intro-box">
+              <strong>SOURDOUGH TIMER</strong>
+              <br />
+              The timer starts at step one, once you&apos;ve finished the step
+              just hit the timer and you will get an alert when it&apos;s time
+              to move onto the next step.
+            </p>
+            <img
+              src="/fulltimer.png"
+              alt="example of timer page with instruction and timer"
+            />
+          </p>
           <h2>MAKE BREAD</h2>
         </div>
         <div className="home-links">
@@ -22,8 +58,8 @@ function Home() {
             <Link to="/starter">Schedule for starter</Link>
           </div>
           <div className="home-link">
-            <img src="/recipe.png" alt="writing out a recipe" />
-            <Link to="/recipe">Our recipe</Link>
+            <img src="/timer.png" alt="sourdough timer" />
+            <Link to="/timer">Timer</Link>
           </div>
         </div>
       </div>

@@ -54,27 +54,29 @@ export default function Timer() {
 
   return (
     <>
-      <h2 className="timer-page-title">Bread Timer</h2>
+      <div className="timer-page">
+        <h2 className="timer-page-title">Bread Timer</h2>
 
-      <div className="timer-step">
-        <div className="timer-instruction">
-          <p className="timer-step-number">
-            Step {steps[currentStepIndex]?.id}.
-          </p>
-          {steps[currentStepIndex]?.expandedInstructions}
-          <br />
-          <br />
-          <button onClick={nextStep} className="timer-next-button">
-            Next Step →
-          </button>
-        </div>
-        <div className="timer-controls">
-          <div className="timer-display">
-            {seconds !== null ? formatTime(seconds) : '00:00:00'}
+        <div className="timer-step">
+          <div className="timer-instruction">
+            <p className="timer-step-number">
+              Step {steps[currentStepIndex]?.id}.
+            </p>
+            {steps[currentStepIndex]?.expandedInstructions}
+            <br />
+            <br />
+            <button onClick={nextStep} className="timer-next-button">
+              Next Step →
+            </button>
           </div>
-          <button onClick={startTimer} className="timer-start-button">
-            Push to start timer
-          </button>
+          <div className="timer-controls">
+            <div className="timer-display">
+              {seconds !== null ? formatTime(seconds) : '00:00:00'}
+            </div>
+            <button onClick={startTimer} className="timer-start-button">
+              Push to start timer
+            </button>
+          </div>
         </div>
       </div>
     </>

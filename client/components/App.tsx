@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom'
 import Nav from './Nav.tsx'
+import Footer from './Footer.tsx'
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <div className="app">
         <Nav />
         <Outlet />
+        <Footer />
       </div>
     </>
   )
