@@ -1,47 +1,25 @@
 import { useSteps } from '../hooks/useSteps'
 import { Steps } from '../../models/steps'
 import { useState } from 'react'
-
-const times = [
-  { time: 1 },
-  { time: 2 },
-  { time: 3 },
-  { time: 4 },
-  { time: 5 },
-  { time: 6 },
-  { time: 7 },
-  { time: 8 },
-  { time: 9 },
-  { time: 10 },
-  { time: 11 },
-  { time: 12 },
-  { time: 13 },
-  { time: 14 },
-  { time: 15 },
-  { time: 16 },
-  { time: 17 },
-  { time: 18 },
-  { time: 19 },
-  { time: 20 },
-  { time: 21 },
-  { time: 22 },
-  { time: 23 },
-  { time: 24 },
-]
-
-function add(num1: number, num2: number) {
-  return Number(num1) + Number(num2)
-}
+import BreadStep from './BreadStep'
 
 export default function Bread() {
   const { data: steps, isLoading, error } = useSteps()
-  const [select, setSelect] = useState(9)
+  const [startTime, setStartTime] = useState(9)
+  const [expandedStep, setExpandedStep] = useState<{ [key: number]: boolean }>(
+    {},
+  )
+
+  const times = []
+  for (let i = 0; i < 24; i++) {
+    times.push(i)
+  }
 
   if (isLoading) return <p>Preheating the oven...</p>
   if (error) return <p>Bread is burning, be right back!</p>
 
   function handleTime(e: React.ChangeEvent<HTMLSelectElement>) {
-    setSelect(Number(e.target.value))
+    setStartTime(Number(e.target.value))
   }
 
   function convertTo12Hour(twentyfourhourtime: number) {
@@ -58,47 +36,55 @@ export default function Bread() {
     return `${hour}:${formattedMinute}${amOrPm}`
   }
 
-  return (
-    <div className="container">
-      <h2 className="section-title">Bread Schedule</h2>
+  function toggleStep(id: number) {
+    setExpandedStep((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }))
+  }
 
-      <div className="picker">
-        <h3 className="picker-title">Pick a start-time</h3>
+  return (
+    <div className="bread-page">
+      <h2 className="bread-page-title">Bread Schedule</h2>
+
+      <div className="bread-picker">
+        <h3 className="bread-picker-title">Pick a start-time</h3>
       </div>
 
-      <div className="picker-select">
+      <div className="bread-picker-select-wrapper">
         <select
           id="start-time"
           name="start-time"
           onChange={handleTime}
-          className="dropdown"
+          className="bread-picker-select"
         >
           <option value="select time" key="default">
             select time
           </option>
           {times.map((time) => (
-            <option key={time.time} value={time.time}>
-              {convertTo12Hour(Number(time.time))}
+            <option key={time} value={time}>
+              {convertTo12Hour(Number(time))}
             </option>
           ))}
         </select>
       </div>
 
-      <div className="card-list">
-        {steps.map((step: Steps) => (
-          <div key={step.id} className="card">
-            <p className="card-heading">
-              <strong>
-                {convertTo12Hour(add(Number(select), Number(step.setTime)))}
-              </strong>
-            </p>
-            <p className="card-text">{step.instructions}</p>
-          </div>
-        ))}
+      <div className="bread-steps">
+        {startTime !== null &&
+          steps.map((step: Steps) => (
+            <BreadStep
+              key={step.id}
+              step={step}
+              stepTime={startTime + step.setTime}
+              isExpanded={!!expandedStep[step.id]}
+              onToggle={() => toggleStep(step.id)}
+              convertTo12Hour={convertTo12Hour}
+            />
+          ))}
       </div>
     </div>
   )
 }
 
 //Need to add a next day
-//Add option to expand for more detailed steps
+//Add tick box option
