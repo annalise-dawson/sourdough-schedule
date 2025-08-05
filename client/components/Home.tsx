@@ -34,25 +34,28 @@ function Home() {
               to move onto the next step.
             </p>
           </p>
-          <h2>MAKE BREAD</h2>
+          <br></br>
+          <br></br>
+
+          <h2>LETS MAKE BREAD!</h2>
         </div>
         <div className="home-links">
           <Link to="/bread">
             <div className="home-link">
               <img src="/bread.jpg" alt="sourdough bread" />
-              Schedule for bread
+              <p className="home-link-text">Schedule for bread</p>
             </div>
           </Link>
           <Link to="/starter">
             <div className="home-link">
               <img src="/starter.png" alt="sourdough starter" />
-              Schedule for starter
+              <p className="home-link-text">Schedule for starter</p>
             </div>
           </Link>
           <Link to="/timer">
             <div className="home-link">
               <img src="/timer.png" alt="sourdough timer" />
-              Timer
+              <p className="home-link-text">Timer</p>
             </div>
           </Link>
         </div>
