@@ -21,7 +21,7 @@ function Nav() {
             <Link to="/starter">Starter</Link>
           </div>
           <div className="navbar-link">
-            <Link to="/recipe">Recipe</Link>
+            <Link to="/timer">Timer</Link>
           </div>
         </div>
       </header>
