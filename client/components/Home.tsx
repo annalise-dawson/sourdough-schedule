@@ -18,10 +18,6 @@ function Home() {
               start making your bread and it will show you at what time you
               should start each step.
             </p>
-            <img
-              src="/schedulerpage.png"
-              alt="example of schedule page with step 1 instructions"
-            />
 
             <p className="home-intro-box">
               <strong>SCHEDULING YOUR STARTER</strong>
@@ -29,10 +25,6 @@ function Home() {
               Much like the sourdough scheduler! Except this is broken down day
               by day.
             </p>
-            <img
-              src="/starterpage.png"
-              alt="example of starter page with step 1 instructions"
-            />
 
             <p className="home-intro-box">
               <strong>SOURDOUGH TIMER</strong>
@@ -41,26 +33,28 @@ function Home() {
               just hit the timer and you will get an alert when it&apos;s time
               to move onto the next step.
             </p>
-            <img
-              src="/fulltimer.png"
-              alt="example of timer page with instruction and timer"
-            />
           </p>
           <h2>MAKE BREAD</h2>
         </div>
         <div className="home-links">
-          <div className="home-link">
-            <img src="/bread.jpg" alt="sourdough bread" />
-            <Link to="/bread">Schedule for bread</Link>
-          </div>
-          <div className="home-link">
-            <img src="/starter.png" alt="sourdough starter" />
-            <Link to="/starter">Schedule for starter</Link>
-          </div>
-          <div className="home-link">
-            <img src="/timer.png" alt="sourdough timer" />
-            <Link to="/timer">Timer</Link>
-          </div>
+          <Link to="/bread">
+            <div className="home-link">
+              <img src="/bread.jpg" alt="sourdough bread" />
+              Schedule for bread
+            </div>
+          </Link>
+          <Link to="/starter">
+            <div className="home-link">
+              <img src="/starter.png" alt="sourdough starter" />
+              Schedule for starter
+            </div>
+          </Link>
+          <Link to="/timer">
+            <div className="home-link">
+              <img src="/timer.png" alt="sourdough timer" />
+              Timer
+            </div>
+          </Link>
         </div>
       </div>
     </>
