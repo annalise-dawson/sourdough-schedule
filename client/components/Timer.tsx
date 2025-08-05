@@ -6,22 +6,26 @@ export default function Timer() {
   const [isActive, setIsActive] = useState(false)
   const { data: steps, isLoading, error } = useSteps()
   const [currentStepIndex, setCurrentStepIndex] = useState(0)
+  const [isPaused, setIsPaused] = useState(false)
+  const [timerStarted, setTimerStarted] = useState(false)
 
   useEffect(() => {
-    if (!isActive) return
-
-    if (seconds <= 0) {
-      alert('Time for the next step')
-      setIsActive(false)
-      return
-    }
+    if (!isActive || isPaused) return
 
     const timer = setInterval(() => {
-      setSeconds((prevSeconds) => prevSeconds - 1)
+      setSeconds((prevSeconds) => {
+        if (prevSeconds <= 1) {
+          clearInterval(timer)
+          setIsActive(false)
+          alert('Time for the next step')
+          return 0
+        }
+        return prevSeconds - 1
+      })
     }, 1000)
 
     return () => clearInterval(timer)
-  }, [seconds, isActive])
+  }, [isActive, isPaused])
 
   const formatTime = (timeInSeconds: number) => {
     const hours = Math.floor(timeInSeconds / 3600)
@@ -35,18 +39,29 @@ export default function Timer() {
   }
 
   const startTimer = () => {
-    setSeconds(steps[currentStepIndex]?.timer)
+    if (!timerStarted) {
+      setSeconds(steps[currentStepIndex]?.timer)
+      setTimerStarted(true)
+    }
+
+    setIsPaused(false)
     setIsActive(true)
   }
 
   const nextStep = () => {
     setSeconds(0)
     setIsActive(false)
+    setTimerStarted(false)
     if (currentStepIndex == steps.length - 1) {
       setCurrentStepIndex(0)
     } else {
       setCurrentStepIndex(currentStepIndex + 1)
     }
+  }
+
+  const pauseTimer = () => {
+    setIsActive(false)
+    setIsPaused(true)
   }
 
   if (isLoading) return <p>Preheating the oven...</p>
@@ -73,9 +88,15 @@ export default function Timer() {
             <div className="timer-display">
               {seconds !== null ? formatTime(seconds) : '00:00:00'}
             </div>
-            <button onClick={startTimer} className="timer-start-button">
-              Push to start timer
-            </button>
+            {isActive !== true ? (
+              <button onClick={startTimer} className="timer-start-button">
+                Push to start timer
+              </button>
+            ) : (
+              <button onClick={pauseTimer} className="timer-start-button">
+                Push to pause timer
+              </button>
+            )}
           </div>
         </div>
       </div>
