@@ -446,4 +446,160 @@ footer {
   color: var(--tan);
 }
 
+/* RESPONSIVE STYLES */
+@media (max-width: 1024px) {
+  .home-section {
+    padding: 2rem;
+  }
+
+  .home-intro-box {
+    width: 100%;
+    height: auto;
+  }
+
+  .home-link {
+    width: 100%;
+    height: auto;
+  }
+
+  .navbar-links {
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .navbar-title h1 {
+    font-size: 1.4rem;
+  }
+
+  .navbar-links {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  .home-header {
+    height: 35vh;
+    padding: 1rem;
+  }
+
+  .home-header-text h1 {
+    font-size: 1.8rem;
+  }
+
+  .home-header-text p {
+    font-size: 1rem;
+  }
+
+    .home-subheading h2 {
+  font-size: 1.5rem;
+}
+
+  .home-section {
+    padding: 2rem 1rem;
+  }
+
+  .home-intro {
+    font-size: 1.2rem;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .home-intro-box {
+    width: 100%;
+    padding: 1rem;
+    height: auto;
+  }
+
+  .home-links {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .home-link {
+    width: 100%;
+    max-width: 350px;
+  }
+
+  .home-link img {
+    height: auto;
+    max-height: 200px;
+  }
+
+  .bread-page,
+  .starter-page,
+  .recipe,
+  .timer-page {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .timer-step {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .timer-controls {
+    align-items: flex-start;
+  }
+
+  .timer-display {
+    width: 100%;
+    font-size: 1.2rem;
+  }
+}
+
+  .home-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .home-link {
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+  }
+
+@media (max-width: 480px) {
+  .navbar-title h1 {
+    font-size: 1.2rem;
+  }
+
+  .home-header {
+    height: 30vh;
+  }
+
+  .home-header-text h1 {
+    font-size: 1.5rem;
+  }
+
+  .home-subheading h2 {
+  font-size: 1.5rem;
+}
+
+  .home-intro {
+    font-size: 1rem;
+  }
+
+  .home-link {
+    padding: 1.5rem;
+  }
+
+  .home-link-text {
+    font-size: 1.2rem;
+  }
+}
 
