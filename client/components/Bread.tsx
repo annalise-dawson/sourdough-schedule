@@ -6,6 +6,7 @@ import BreadStep from './BreadStep'
 export default function Bread() {
   const { data: steps, isLoading, error } = useSteps()
   const [startTime, setStartTime] = useState(9)
+  const [isChecked, setIsChecked] = useState<{ [key: number]: boolean }>({})
   const [expandedStep, setExpandedStep] = useState<{ [key: number]: boolean }>(
     {},
   )
@@ -43,6 +44,13 @@ export default function Bread() {
     }))
   }
 
+  function handleCheck(id: number) {
+    setIsChecked((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }))
+  }
+
   return (
     <div className="bread-page">
       <h2 className="bread-page-title">Bread Schedule</h2>
@@ -72,14 +80,22 @@ export default function Bread() {
       <div className="bread-steps">
         {startTime !== null &&
           steps.map((step: Steps) => (
-            <BreadStep
-              key={step.id}
-              step={step}
-              stepTime={startTime + step.setTime}
-              isExpanded={!!expandedStep[step.id]}
-              onToggle={() => toggleStep(step.id)}
-              convertTo12Hour={convertTo12Hour}
-            />
+            <div className="bread-step" key={step.id}>
+              <BreadStep
+                step={step}
+                stepTime={startTime + step.setTime}
+                isExpanded={!!expandedStep[step.id]}
+                onToggle={() => toggleStep(step.id)}
+                convertTo12Hour={convertTo12Hour}
+              />
+              <input
+                type="checkbox"
+                checked={!!isChecked[step.id]}
+                onChange={() => handleCheck(step.id)}
+                className="bread-step-checkbox"
+              />
+              Step done!
+            </div>
           ))}
       </div>
     </div>
