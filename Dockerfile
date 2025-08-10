@@ -23,5 +23,11 @@ COPY --from=builder /app/server ./server
 
 COPY --from=builder /app/server/db ./server/db
 
+RUN mkdir /app/storage
+
+RUN npm run knex migrate:latest
+
+RUN npm run knex seed:run
+
 EXPOSE 3000
 CMD ["node", "dist/server.js"]
