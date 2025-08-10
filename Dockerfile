@@ -19,8 +19,6 @@ COPY --from=builder /app/dist ./dist
 
 COPY --from=builder /app/public ./public
 
-COPY --from=builder /app/client/dist ./dist
-
 COPY --from=builder /app/server ./server
 
 COPY --from=builder /app/server/db ./server/db
